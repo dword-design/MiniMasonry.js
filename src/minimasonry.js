@@ -7,7 +7,6 @@ var MiniMasonry = function(conf) {
     this._removeListener    = null;
     this._currentGutterX    = null;
     this._currentGutterY    = null;
-    this._children          = [];
     this._resizeObserver    = null;
     this._mutationObserver  = null;
 
