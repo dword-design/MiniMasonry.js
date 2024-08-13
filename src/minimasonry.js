@@ -65,14 +65,14 @@ MiniMasonry.prototype.init = function(conf) {
 
     this._mutationObserver = new MutationObserver(() => {
 
-        resizeObserver.disconnect();
+        this._resizeObserver.disconnect();
 
         for (const child of this._container.children) {
-            resizeObserver.observe(child);
+            this._resizeObserver.observe(child);
         }
     });
 
-    mutationObserver.observe(root.value, { childList: true });
+    this._mutationObserver.observe(this._container, { childList: true });
 
     this.layout();
 };
