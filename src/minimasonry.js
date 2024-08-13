@@ -7,6 +7,9 @@ var MiniMasonry = function(conf) {
     this._removeListener    = null;
     this._currentGutterX    = null;
     this._currentGutterY    = null;
+    this._children          = [];
+    this._resizeObserver    = null;
+    this._mutationObserver  = null;
 
     this._resizeTimeout = null,
 
@@ -58,6 +61,19 @@ MiniMasonry.prototype.init = function(conf) {
             this._resizeTimeout = null;
         }
     }
+
+    this._resizeObserver = new ResizeObserver(() => this.layout());
+
+    this._mutationObserver = new MutationObserver(() => {
+
+        resizeObserver.disconnect();
+
+        for (const child of this._container.children) {
+            resizeObserver.observe(child);
+        }
+    });
+
+    mutationObserver.observe(root.value, { childList: true });
 
     this.layout();
 };
@@ -226,6 +242,9 @@ MiniMasonry.prototype.destroy = function() {
     if (typeof this._removeListener == "function") {
         this._removeListener();
     }
+
+    this._resizeObserver.destroy();
+    this._mutationObserver.destroy();
 
     var children = this._container.children;
     for (var k = 0;k< children.length; k++) {
