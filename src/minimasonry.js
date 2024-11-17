@@ -56,7 +56,7 @@ MiniMasonry.prototype.init = function(conf) {
 
     this._containerResizeObserver = new ResizeObserver(onResize);
 
-    this._childrenResizeObserver = new ResizeObserver(onResize);
+    this._childrenResizeObserver = new ResizeObserver(() => this.layout());
 
     this._mutationObserver = new MutationObserver(() => {
 
