@@ -234,9 +234,9 @@ MiniMasonry.prototype.resizeThrottler = function() {
 }
 
 MiniMasonry.prototype.destroy = function() {
-    this._containerResizeObserver.destroy();
-    this._childrenResizeObserver.destroy();
-    this._mutationObserver.destroy();
+    this._containerResizeObserver.disconnect();
+    this._childrenResizeObserver.disconnect();
+    this._mutationObserver.disconnect();
 
     var children = this._container.children;
     for (var k = 0;k< children.length; k++) {
