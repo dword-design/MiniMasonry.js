@@ -173,7 +173,7 @@ MiniMasonry.prototype.layout =  function() {
         var y = this._columns[nextColumn];
 
 
-        children[index].style.transform = 'translate3d(' + Math.round(x) + 'px,' + Math.round(y) + 'px,0)';
+        children[index].style.transform = 'translate(' + Math.round(x) + 'px,' + Math.round(y) + 'px)';
 
         this._columns[nextColumn] += this._sizes[index] + (this._count > 1 ? this.conf.gutterY : this.conf.ultimateGutter);//margin-bottom
     }
